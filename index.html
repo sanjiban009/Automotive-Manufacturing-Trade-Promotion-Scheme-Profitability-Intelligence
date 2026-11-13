@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#081626" />
+  <meta name="description" content="Offline, interactive Automotive Manufacturing Trade Promotion & Scheme Profitability BI dashboard — Indian FY, INR, campaign ROI, trade spend and what-if analysis. Synthetic portfolio project." />
+  <title>AXIOM | Automotive Trade Intelligence</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Dashboard navigation">
+    <div class="brand-row">
+      <span class="brand-logo" aria-hidden="true"><svg viewBox="0 0 44 44"><path d="M8 33 19.2 10h5.5L36 33h-7l-6.9-14.7L15.4 33Z" fill="currentColor"/><path d="M19 28h10" stroke="#081626" stroke-width="3"/></svg></span>
+      <span><strong>AXIOM</strong><small>AUTOMOTIVE · BI</small></span>
+    </div>
+    <div class="side-kicker">WORKSPACE / 01</div>
+    <nav class="nav-list" id="navList">
+      <button class="nav-btn is-active" data-page="overview"><span class="nav-glyph">▦</span><span>Executive Overview</span><span class="nav-caret">›</span></button>
+      <button class="nav-btn" data-page="schemes"><span class="nav-glyph">◉</span><span>Scheme Performance</span><span class="nav-caret">›</span></button>
+      <button class="nav-btn" data-page="portfolio"><span class="nav-glyph">▧</span><span>Product & Channel</span><span class="nav-caret">›</span></button>
+      <button class="nav-btn" data-page="regions"><span class="nav-glyph">◎</span><span>Regional Intelligence</span><span class="nav-caret">›</span></button>
+      <button class="nav-btn" data-page="scenario"><span class="nav-glyph">⌁</span><span>ROI Scenario Lab</span><span class="nav-caret">›</span></button>
+      <button class="nav-btn" data-page="explorer"><span class="nav-glyph">☷</span><span>Transaction Explorer</span><span class="nav-caret">›</span></button>
+      <button class="nav-btn" data-page="methodology"><span class="nav-glyph">◇</span><span>Metric Methodology</span><span class="nav-caret">›</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="system-card"><span class="status-light"></span><div><strong>OFFLINE ANALYTICS</strong><small>Fully local · no APIs · no account</small></div></div>
+      <div class="sidebar-copy">MADE FOR AUTOMOTIVE MANUFACTURING<br />TRADE & COMMERCIAL ANALYTICS</div>
+      <div class="side-version">PORTFOLIO EDITION · V1.0</div>
+    </div>
+  </aside>
+
+  <div class="main-area">
+    <header class="topbar">
+      <div class="breadcrumb"><span class="crumb-muted">MANUFACTURING INTELLIGENCE</span><span class="crumb-sep">/</span><strong id="breadcrumbLabel">Executive Overview</strong></div>
+      <div class="top-actions"><span class="source-tag"><span class="status-light"></span> VERIFIED SYNTHETIC DATA</span><button class="top-btn" id="exportCsv" title="Download currently filtered observations as CSV">↓ <span>Export CSV</span></button><button class="top-btn border-btn" id="printBtn" title="Print dashboard or save as PDF">▣ <span>Print / PDF</span></button></div>
+    </header>
+
+    <main class="dashboard-content">
+      <div class="page-intro">
+        <div><div class="eyebrow">COMMERCIAL EXCELLENCE / EXECUTIVE DECISION SYSTEM</div><h1 id="pageTitle">Trade Promotion <span>&</span> Scheme Profitability</h1><p id="pageSubtitle">A boardroom-ready view of promotional efficiency, incremental growth and commercial return.</p></div>
+        <div class="period-pill"><span class="period-dot"></span><div><small>REPORTING BASIS</small><strong id="reportingBasis">FY2025–26 · 12 MONTHS</strong></div></div>
+      </div>
+
+      <section class="slicer-bar" aria-label="Interactive dashboard slicers">
+        <div class="slicer-bar-head"><div class="slicer-head-title"><span class="filter-icon">≡</span> GLOBAL SLICERS <span class="slicer-hint">All visuals cross-filter automatically</span></div><button id="resetFilters" class="clear-filter">↺ Reset all</button></div>
+        <div class="slicer-grid">
+          <label>FINANCIAL YEAR<select data-filter="financial_year" id="filterFY"></select></label>
+          <label>FY QUARTER<select data-filter="financial_quarter"></select></label>
+          <label>FY MONTH<select data-filter="fiscal_month"></select></label>
+          <label>REGION<select data-filter="region"></select></label>
+          <label>CHANNEL<select data-filter="channel"></select></label>
+          <label>PRODUCT FAMILY<select data-filter="product_category"></select></label>
+          <label>SCHEME<select data-filter="scheme_name"></select></label>
+        </div>
+        <div class="active-slicer-line"><span id="filterStatus">Loading portfolio data…</span><span>INR · ₹ LAKHS / CRORES · APR–MAR FY</span></div>
+      </section>
+
+      <section id="page-overview" class="page-view is-current">
+        <div class="section-heading"><div><span class="section-marker"></span><h2>Executive KPI scorecard</h2></div><span class="section-meta">Dynamic weighted metrics, not row averages</span></div>
+        <div id="kpiGrid" class="kpi-grid"></div>
+        <div class="section-heading section-spacing"><div><span class="section-marker cyan"></span><h2>Trade investment performance</h2></div><span class="section-meta">Campaign economics · Indian FY basis</span></div>
+        <div class="layout-two-primary">
+          <article class="panel" id="monthlyPanel"><div class="panel-header"><div><div class="mini-overline">01 / FINANCIAL PERFORMANCE</div><h3>Trade Spend vs Incremental Profit</h3><p>Month-by-month promotional investment and resulting net lift</p></div><div class="panel-tag">₹ LAKH</div></div><div class="svg-chart" id="monthlyChart"></div><div class="legend-row"><span><i style="background:var(--blue)"></i>Trade spend</span><span><i style="background:var(--teal)"></i>Net incremental profit</span></div></article>
+          <article class="panel"><div class="panel-header"><div><div class="mini-overline">02 / SCHEME EFFICIENCY</div><h3>Scheme Return Ranking</h3><p>Weighted ROI by promotional program</p></div><div class="panel-tag">ROI %</div></div><div class="svg-chart" id="schemeRoiChart"></div><div class="chart-note">ROI = net incremental profit ÷ scheme spend.</div></article>
+        </div>
+        <div class="layout-three">
+          <article class="panel"><div class="panel-header"><div><div class="mini-overline">03 / INVESTMENT ALLOCATION</div><h3>Spend Distribution</h3><p>Campaign spend by scheme type</p></div></div><div id="spendDonut" class="donut-module"></div></article>
+          <article class="panel"><div class="panel-header"><div><div class="mini-overline">04 / CHANNEL RANKING</div><h3>Channel Return</h3><p>ROI by route to market</p></div></div><div id="channelMini" class="mini-ranking"></div></article>
+          <article class="panel insight-panel"><div class="panel-header"><div><div class="mini-overline">05 / AI-STYLE RULE ENGINE</div><h3>Executive Decision Signals</h3><p>Transparent rules, calculated from filtered rows</p></div><div class="live-pill">LIVE INSIGHTS</div></div><div id="insightCards" class="insight-list"></div></article>
+        </div>
+      </section>
+
+      <section id="page-schemes" class="page-view">
+        <div class="section-heading"><div><span class="section-marker"></span><h2>Program profitability diagnostics</h2></div><span class="section-meta">Promotion spend · gain / loss · margin conversion</span></div>
+        <div id="schemeSummary" class="metric-ribbon"></div>
+        <div class="layout-two-primary">
+          <article class="panel"><div class="panel-header"><div><div class="mini-overline">01 / CAMPAIGN ECONOMICS</div><h3>Net Incremental Profit by Scheme</h3><p>Strong programs create margin after trade investment</p></div><div class="panel-tag">₹ LAKH</div></div><div class="svg-chart" id="schemeProfitChart"></div></article>
+          <article class="panel"><div class="panel-header"><div><div class="mini-overline">02 / SCHEME ROI</div><h3>ROI Efficiency</h3><p>Net incremental profit per ₹100 invested</p></div><div class="panel-tag">ROI %</div></div><div class="svg-chart" id="schemeRoiSecondary"></div></article>
+        </div>
+        <article class="panel data-panel"><div class="panel-header"><div><div class="mini-overline">03 / DECISION MATRIX</div><h3>Scheme Investment Leaderboard</h3><p>Click a scheme to cross-filter the entire dashboard</p></div><div class="panel-tag">INTERACTIVE TABLE</div></div><div id="schemeTable"></div></article>
+      </section>
+
+      <section id="page-portfolio" class="page-view">
+        <div class="section-heading"><div><span class="section-marker"></span><h2>Product margin and channel mix</h2></div><span class="section-meta">Portfolio decomposition · profitability quality</span></div>
+        <div id="portfolioSummary" class="metric-ribbon"></div>
+        <div class="layout-two-primary">
+          <article class="panel"><div class="panel-header"><div><div class="mini-overline">01 / CATEGORY ECONOMICS</div><h3>Profitability by Component Family</h3><p>Net incremental return, indexed by product segment</p></div><div class="panel-tag">ROI %</div></div><div class="svg-chart" id="categoryChart"></div></article>
+          <article class="panel"><div class="panel-header"><div><div class="mini-overline">02 / ROUTE-TO-MARKET</div><h3>Channel Net Sales</h3><p>Contribution to sales and campaign investment</p></div><div class="panel-tag">₹ CRORE</div></div><div class="svg-chart" id="channelChart"></div></article>
+        </div>
+        <article class="panel data-panel"><div class="panel-header"><div><div class="mini-overline">03 / PORTFOLIO MIX</div><h3>Product Profitability Control Table</h3><p>Spend intensity, sales contribution and margin recovery</p></div></div><div id="categoryTable"></div></article>
+      </section>
+
+      <section id="page-regions" class="page-view">
+        <div class="section-heading"><div><span class="section-marker"></span><h2>Geographic performance intelligence</h2></div><span class="section-meta">Six India sales zones · category economics</span></div>
+        <div id="regionSummary" class="metric-ribbon"></div>
+        <div class="layout-two-primary">
+          <article class="panel"><div class="panel-header"><div><div class="mini-overline">01 / RETURN BY ZONE</div><h3>Region-wise Incremental ROI</h3><p>Find geographies with profitable scheme conversion</p></div><div class="panel-tag">ROI %</div></div><div class="svg-chart" id="regionChart"></div></article>
+          <article class="panel"><div class="panel-header"><div><div class="mini-overline">02 / INVESTMENT SHARE</div><h3>Trade Spend by Region</h3><p>Where scheme investment is concentrated</p></div><div class="panel-tag">₹ LAKH</div></div><div class="svg-chart" id="regionSpendChart"></div></article>
+        </div>
+        <article class="panel data-panel"><div class="panel-header"><div><div class="mini-overline">03 / WHITE-SPACE ANALYSIS</div><h3>Region × Product ROI Heatmap</h3><p>Each cell is ratio of summed profit to summed spend. Green positive, coral negative.</p></div></div><div id="regionHeatmap"></div></article>
+      </section>
+
+      <section id="page-scenario" class="page-view">
+        <div class="section-heading"><div><span class="section-marker"></span><h2>Trade investment what-if laboratory</h2></div><span class="section-meta">Illustrative sensitivity · not a causal forecast</span></div>
+        <div class="scenario-intro"><span class="scenario-symbol">⌁</span><div><h3>Model better promotional decisions before committing spend.</h3><p>Adjust units sold relative to current actuals and campaign investment. The model holds unit economics constant and recalculates incremental profit / ROI.</p></div></div>
+        <div class="scenario-controls"><div class="scenario-control"><div class="scenario-label"><strong>Additional volume vs observed units</strong><span id="upliftValue" class="scenario-value">+0%</span></div><input id="upliftSlider" type="range" min="-20" max="20" step="1" value="0"/><div class="slider-ends"><span>−20% volume</span><span>Current baseline</span><span>+20% volume</span></div></div><div class="scenario-control"><div class="scenario-label"><strong>Change in total scheme spend</strong><span id="spendValue" class="scenario-value">+0%</span></div><input id="spendSlider" type="range" min="-30" max="30" step="1" value="0"/><div class="slider-ends"><span>−30% spend</span><span>Current baseline</span><span>+30% spend</span></div></div><button id="scenarioReset" class="scenario-reset">↺ Restore base case</button></div>
+        <div id="scenarioKpis" class="scenario-kpis"></div>
+        <div class="layout-two-primary"><article class="panel"><div class="panel-header"><div><div class="mini-overline">01 / BASE VS SCENARIO</div><h3>Incremental Profit Bridge</h3><p>Modelled profit changes from unit and spend sensitivity</p></div><div class="panel-tag">₹ LAKH</div></div><div class="svg-chart" id="scenarioChart"></div></article><article class="panel"><div class="panel-header"><div><div class="mini-overline">02 / INVESTMENT GATE</div><h3>Break-even Decision Panel</h3><p>Required additional volume to eliminate net scheme loss</p></div></div><div id="breakevenPanel" class="breakeven-box"></div></article></div>
+        <p class="small-disclaimer">Sensitivity modelling uses static unit contribution margins, with all other commercial terms unchanged. It is a directional planning tool, not evidence that the scheme caused the observed uplift.</p>
+      </section>
+
+      <section id="page-explorer" class="page-view">
+        <div class="section-heading"><div><span class="section-marker"></span><h2>Campaign-level analytical detail</h2></div><span class="section-meta">Underlying monthly facts · 100% synthetic</span></div>
+        <article class="panel data-panel"><div class="panel-header"><div><div class="mini-overline">01 / SOURCE LEDGER</div><h3>Trade Promotion Fact Records</h3><p>All rows have explicit April–March financial-year labels</p></div><label class="search-field">⌕ <input id="tableSearch" type="search" placeholder="Search scheme, region, campaign…" aria-label="Search records" /></label></div><div id="explorerMeta" class="explorer-meta"></div><div id="explorerTable"></div><div class="table-pagination"><button id="prevPage">← Previous</button><span id="pageCounter"></span><button id="nextPage">Next →</button></div></article>
+      </section>
+
+      <section id="page-methodology" class="page-view">
+        <div class="section-heading"><div><span class="section-marker"></span><h2>Metric definitions & governance</h2></div><span class="section-meta">Auditable calculations · no misleading ratio averages</span></div>
+        <div class="method-grid">
+          <article class="panel method-card"><div class="mini-overline">01 / FINANCIAL CALENDAR</div><h3>Indian FY standard</h3><p>Every record is mapped to 1 April–31 March of its FY. Financial quarters: Q1 Apr–Jun, Q2 Jul–Sep, Q3 Oct–Dec, Q4 Jan–Mar. The FY2026–27 dataset includes Apr–Oct 2026 only; no invented future actuals.</p></article>
+          <article class="panel method-card"><div class="mini-overline">02 / REVENUE REALIZATION</div><h3>Net Sales (₹)</h3><p>Gross sales − regular trade discount − total promotional spend. Regular discount and scheme spend are separately tracked to avoid double counting.</p></article>
+          <article class="panel method-card"><div class="mini-overline">03 / PROFIT AFTER SCHEME</div><h3>Net Incremental Profit (₹)</h3><p>[(Actual units − baseline units) × pre-scheme unit contribution] − scheme spend. Pre-scheme unit contribution = list price − regular discount per unit − manufacturing cost per unit − distribution cost per unit.</p></article>
+          <article class="panel method-card"><div class="mini-overline">04 / CAMPAIGN RETURN</div><h3>Weighted Scheme ROI (%)</h3><p>100 × SUM(net incremental profit) ÷ SUM(scheme spend). Do not average row-level ROI. A positive ROI implies modeled incremental gain exceeds trade spend, not necessarily causal attribution.</p></article>
+          <article class="panel method-card"><div class="mini-overline">05 / VOLUME LIFT</div><h3>Promotional Unit Uplift (%)</h3><p>100 × [SUM(actual units) − SUM(baseline units)] ÷ SUM(baseline units). Baseline units are synthetic counterfactual estimates, not measured untreated-control outcomes.</p></article>
+          <article class="panel method-card"><div class="mini-overline">06 / EXECUTIVE CONTROL</div><h3>Spend, margin & budget</h3><p>Budget utilization = SUM(scheme spend) ÷ SUM(scheme budget). Contribution margin = SUM(contribution) ÷ SUM(net sales). Scheme contribution = net sales − manufacturing COGS − distribution cost.</p></article>
+          <article class="panel method-card"><div class="mini-overline">07 / YOY GOVERNANCE</div><h3>Like-for-like prior FY</h3><p>FY comparisons use matching fiscal months and preserve the current non-year slicers. FY2026–27 (Apr–Oct) is compared with Apr–Oct FY2025–26, never a full preceding FY.</p></article>
+          <article class="panel method-card"><div class="mini-overline">08 / IMPORTANT QUALIFIER</div><h3>Synthetic / illustrative data</h3><p>All 6,192 observations are reproducibly generated for portfolio demonstration and must not be interpreted as company sales, real customer records, verified uplift estimates, tax invoices or audited forecasts. INR prices exclude any GST modelling.</p></article>
+        </div>
+      </section>
+      <footer class="footline"><span>AXIOM AUTOMOTIVE · TRADE ANALYTICS LAB</span><span>All values synthetic · India FY · INR · Last synthetic month: Oct 2026</span><span>Built with HTML / CSS / Vanilla JavaScript · Fully offline</span></footer>
+    </main>
+  </div>
+</div>
+<script src="data/dataset.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
